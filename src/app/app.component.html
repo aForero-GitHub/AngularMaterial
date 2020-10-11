@@ -1,29 +1,60 @@
-<mat-divider></mat-divider>
-<section>
-  <div class="example-label">MENU FAB</div>
-  <div class="example-button-row">
-    <div class="example-flex-container">
-      <div class="example-button-container">
-        <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </div>
-      <div class="example-button-container">
-        <button mat-fab color="accent" aria-label="Example icon button with a bookmark icon">
-          <mat-icon>bookmark</mat-icon>
-        </button>
-      </div>
-      <div class="example-button-container">
-        <button mat-fab color="warn" aria-label="Example icon button with a home icon">
-          <mat-icon>home</mat-icon>
-        </button>
-      </div>
-      <div class="example-button-container">
-        <button mat-fab disabled aria-label="Example icon button with a heart icon">
-          <mat-icon>favorite</mat-icon>
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
-<mat-divider></mat-divider>
+<div class = "contenedor">
+
+  <mat-toolbar>
+
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+      <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+    </button>
+
+    <h1> Horus </h1>
+
+    <span class="spacer"></span>
+
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+
+      <button mat-menu-item routerLink="/perfil">
+        <mat-icon>account_box</mat-icon>
+        <span>My Count</span>
+      </button>
+
+      <button mat-menu-item (click)="sidenav.opened = false">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Clouse</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav style="width: 200px;">
+
+    <img src="assets/horustrasp.png" width="128" style="margin-left: 20px;">
+
+    <button mat-menu-item  routerLink="/provinces" (click)="sidenav.toggle()" style="cursor: pointer;">
+      <mat-icon>public</mat-icon>
+      <span>province</span>
+    </button>
+    <mat-divider></mat-divider>
+
+    <button mat-menu-item  routerLink="/cities" (click)="sidenav.toggle()" style="cursor: pointer;">
+      <mat-icon>location_city</mat-icon>
+      <span>City</span>
+    </button>
+    <mat-divider></mat-divider>
+
+  </mat-sidenav>
+
+<!--
+  Direccionamiento entre paginas
+-->
+  <mat-sidenav-container>
+    <router-outlet></router-outlet>
+  </mat-sidenav-container>
+
+</mat-sidenav-container>
+
+</div>
