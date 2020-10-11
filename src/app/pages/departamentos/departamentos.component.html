@@ -1,1 +1,28 @@
-<p>departamentos works!</p>
+<!--Filtro-->
+<mat-form-field class="mat-form-filter">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Antioquia">
+</mat-form-field>
+
+<!--Paginador-->
+<mat-paginator [pageSize]="9" [pageSizeOptions]="[9, 11, 17, 33]"> </mat-paginator>
+
+<!--Tabla Departamentos-->
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+    <!--Columna IdDepartamentos-->
+    <ng-container matColumnDef="idDepartamento">
+      <mat-header-cell *matHeaderCellDef mat-sort-header="idDepartamento"> Id Departamento </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.idDepartamento}} </mat-cell>
+    </ng-container>
+  
+    <!--Columna nompre Departamentos-->
+    <ng-container matColumnDef="nombre">
+      <mat-header-cell *matHeaderCellDef mat-sort-header="nombre"> Nombre</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+</table>
