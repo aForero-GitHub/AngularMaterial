@@ -1,3 +1,6 @@
+import { Ciudades } from './../_model/Ciudades';
+import { HttpClient } from '@angular/common/http';
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,5 +8,11 @@ import { Injectable } from '@angular/core';
 })
 export class CiudadesService {
 
-  constructor() { }
+  private url = `${environment.HOST}/departamentos/ciudad/listarPorDepartamnto`;
+
+  constructor(private http: HttpClient) { }
+
+  listarCiudades(idDepartamento: number){
+    return this.http.get<Ciudades[]>(`${this.url}/${idDepartamento=5}`);
+  }
 }

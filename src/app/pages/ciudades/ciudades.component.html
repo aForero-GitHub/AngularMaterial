@@ -1,1 +1,40 @@
-<p>ciudades works!</p>
+<mat-form-field>
+    <mat-label>Select an option</mat-label>
+    <mat-select [(value)]="selected">
+      <mat-option >None</mat-option>
+      <mat-option *ngFor="let province of provinces" [value]="province.value" >
+        {{province.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <p>You selected: {{selected}}</p>
+
+<!--Filtro-->
+<mat-form-field class="mat-form-filter">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Medellin">
+</mat-form-field>
+
+<!--Paginador-->
+<mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"> </mat-paginator>
+
+<!--Tabla Ciudades-->
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+    <!--Columna IdCiudades-->
+    <ng-container matColumnDef="idCiudad">
+      <mat-header-cell *matHeaderCellDef mat-sort-header="idCiudad"> Id Ciudad </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.idCiudad}} </mat-cell>
+    </ng-container>
+  
+    <!--Columna nompre Ciudades-->
+    <ng-container matColumnDef="nombre">
+      <mat-header-cell *matHeaderCellDef mat-sort-header="nombre"> Nombre</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+</table>

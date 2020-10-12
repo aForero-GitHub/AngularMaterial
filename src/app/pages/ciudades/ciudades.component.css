@@ -1,0 +1,14 @@
+/* Structure */
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    height: 70px;
+    margin: 12px;
+  }
+
+  .mat-form-filter {
+    font-size: 14px;
+    width: 20%;
+  }
