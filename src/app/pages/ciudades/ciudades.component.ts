@@ -17,34 +17,39 @@ interface Provinces {
 })
 export class CiudadesComponent implements OnInit {
 
-  displayedColumns: string[] = ['idCiudad', 'nombre'];
+  selectedValue: any;
+  dataSource: any[];
+  idDepartamento: number;
 
-  dataSource = new MatTableDataSource<Ciudades>();
+  displayedColumns: any[] = ['idCiudad', 'nombre'];
+
+  dataSourceCiudades = new MatTableDataSource<Ciudades>();
 
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
 
   @ViewChild(MatSort, {static : true}) sort: MatSort;
 
-  selected = 'none';
-
-  idDepartamento: number;
-
-  provinces: Provinces[] = [
-    {value: 5, viewValue: 'Antioquia'}
-  ];
   constructor(private ciudadService: CiudadesService) { }
 
-  ngOnInit(): void {
+  idDepar(event){
+    this.selectedValue = event.idDepartamento;
     this.ciudadService.listarCiudades(this.idDepartamento).subscribe(data => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      this.dataSourceCiudades = new MatTableDataSource(data);
+      this.dataSourceCiudades.paginator = this.paginator;
+      this.dataSourceCiudades.sort = this.sort;
     });
   }
 
+  ngOnInit(): void {
+    this.ciudadService.listar().subscribe(data => {
+      this.dataSource = data;
+    });
+  }
+
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSourceCiudades.filter = filterValue.trim().toLowerCase();
   }
 
 }

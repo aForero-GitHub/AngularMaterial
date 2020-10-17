@@ -8,11 +8,15 @@ import { Injectable } from '@angular/core';
 })
 export class CiudadesService {
 
-  private url = `${environment.HOST}/departamentos/ciudad/listarPorDepartamnto`;
+  private url = `${environment.HOST}/departamentos`;
 
   constructor(private http: HttpClient) { }
 
+  listar(){
+    return this.http.get<Ciudades[]>(`${this.url}/listar`);
+  }
+
   listarCiudades(idDepartamento: number){
-    return this.http.get<Ciudades[]>(`${this.url}/${idDepartamento=5}`);
+    return this.http.get<Ciudades[]>(`${this.url}/ciudad/listarPorDepartamnto/${idDepartamento}`);
   }
 }
