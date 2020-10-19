@@ -5,11 +5,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-interface Provinces {
-  value: number;
-  viewValue: string;
-}
-
 @Component({
   selector: 'app-ciudades',
   templateUrl: './ciudades.component.html',

@@ -3,7 +3,7 @@ export class Vehiculos {
     placa: string;
     modelo: string;
     marca: string;
-    tipoVehiculo: string;
+    tipoVehiuclo: string;
     capacidad: string;
     latitud: number;
     longitud: number;
