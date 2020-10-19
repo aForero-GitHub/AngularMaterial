@@ -8,13 +8,15 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DepartamentosComponent } from './pages/departamentos/departamentos.component';
 import { CiudadesComponent } from './pages/ciudades/ciudades.component';
 import { HttpClientModule } from '@angular/common/http';
+import { VehiculosComponent } from './pages/vehiculos/vehiculos.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DepartamentosComponent,
-    CiudadesComponent
+    CiudadesComponent,
+    VehiculosComponent
   ],
   imports: [
     BrowserModule,
