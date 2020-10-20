@@ -9,6 +9,8 @@ import { DepartamentosComponent } from './pages/departamentos/departamentos.comp
 import { CiudadesComponent } from './pages/ciudades/ciudades.component';
 import { HttpClientModule } from '@angular/common/http';
 import { VehiculosComponent } from './pages/vehiculos/vehiculos.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AgregarVehiculoComponent } from './pages/vehiculos/agregar-vehiculo/agregar-vehiculo.component';
 
 
 @NgModule({
@@ -16,14 +18,17 @@ import { VehiculosComponent } from './pages/vehiculos/vehiculos.component';
     AppComponent,
     DepartamentosComponent,
     CiudadesComponent,
-    VehiculosComponent
+    VehiculosComponent,
+    AgregarVehiculoComponent
   ],
   imports: [
     BrowserModule,
     MaterialModule,
     AppRoutingModule,
     NoopAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,55 @@
+<p></p>
+<form class="forms" [formGroup]="form">
+
+    <table class="full-width"><tr>
+
+      <td><mat-form-field appearance="outline" class="full-width">
+        <mat-label>Placa</mat-label>
+        <input matInput #placas maxlength="7" required formControlName="placa" placeholder="UCK-118">
+        <mat-hint align="end">{{placas.value.length}} / 7</mat-hint>
+        <mat-icon matSuffix>money</mat-icon>
+      </mat-form-field></td>
+
+      <td><mat-form-field appearance="outline" class="full-width">
+        <mat-label>Modelo</mat-label>
+        <input matInput required formControlName="modelo" placeholder="2018">
+        <mat-icon matSuffix>money</mat-icon>
+      </mat-form-field></td>
+
+    </tr></table>
+  
+  
+    <table class="full-width"><tr>
+
+      <td><mat-form-field appearance="outline" class="full-width">
+        <mat-label>Marca</mat-label>
+        <input matInput formControlName="marca" placeholder="Toyota">
+        <mat-icon matSuffix>wb_auto</mat-icon>
+      </mat-form-field></td>
+
+      <td><mat-form-field appearance="outline" class="full-width">
+        <mat-label>Tipo de Vehiculo</mat-label>
+        <input matInput required formControlName="tipoVehiculo" placeholder="Carga">
+        <mat-icon matSuffix>commute</mat-icon>
+      </mat-form-field></td>
+    </tr></table>
+
+    <table class="full-width"><tr>
+        <td><mat-form-field appearance="outline" class="full-width">
+            <mat-label>Capacidad</mat-label>
+            <input matInput required formControlName="capacidad" maxlength="5" placeholder="200Kg">
+            <mat-icon matSuffix>fitness_center</mat-icon>
+          </mat-form-field></td>
+    </tr></table>
+
+    <button mat-raised-button color="primary" type="submit" >
+        <mat-icon>done</mat-icon>
+        <span>Aceptar</span>
+    </button>
+
+    <button mat-raised-button color="accent" type="submit" >
+        <mat-icon>close</mat-icon>
+        <span>Limpiar</span>
+    </button>
+
+  </form>

@@ -1,6 +1,5 @@
 import { VehiculosService } from './../../_service/vehiculos.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
@@ -12,14 +11,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 export class VehiculosComponent implements OnInit {
 
   cantidad: number;
-  pageIndex: number = 0;
-  pageSize: number = 5;
+  pageIndex = 0;
+  pageSize = 5;
 
   displayedColumns: any[] = ['placa', 'modelo', 'marca', 'tipoVehiuclo', 'capacidad'];
 
   dataSourceVehiculos = new MatTableDataSource<any>();
-
-  @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
 
   @ViewChild(MatSort, {static : true}) sort: MatSort;
 
