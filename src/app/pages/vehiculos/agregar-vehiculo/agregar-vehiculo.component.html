@@ -1,18 +1,24 @@
 <p></p>
-<form class="forms" [formGroup]="form">
+<form class="forms" #frmAddVeh='ngForm' [formGroup]="form" (ngSubmit)="guardar()">
 
     <table class="full-width"><tr>
 
       <td><mat-form-field appearance="outline" class="full-width">
         <mat-label>Placa</mat-label>
-        <input matInput #placas maxlength="7" required formControlName="placa" placeholder="UCK-118">
+        <input matInput #placas maxlength="7" formControlName="placa" placeholder="UCK-118">
         <mat-hint align="end">{{placas.value.length}} / 7</mat-hint>
+        <mat-error *ngIf="placa.invalid && placa.errors.required">La placa es requerida</mat-error>
+        <mat-error *ngIf="placa.invalid && placa.errors.pattern">Formato invalido</mat-error>
         <mat-icon matSuffix>money</mat-icon>
       </mat-form-field></td>
 
       <td><mat-form-field appearance="outline" class="full-width">
         <mat-label>Modelo</mat-label>
-        <input matInput required formControlName="modelo" placeholder="2018">
+        <input matInput #modelos formControlName="modelo" placeholder="2018" min="18" max="2020">
+        <mat-hint align="end">{{modelos.value.length}} / 4</mat-hint>
+        <mat-error *ngIf="modelo.invalid && modelo.errors.required">El modelo es requerido</mat-error>
+        <mat-error *ngIf="modelo.invalid && modelo.errors.min">Modelo minimo 2000</mat-error>
+        <mat-error *ngIf="modelo.invalid && modelo.errors.max">Modelo maximo 2020</mat-error>
         <mat-icon matSuffix>money</mat-icon>
       </mat-form-field></td>
 
@@ -23,13 +29,17 @@
 
       <td><mat-form-field appearance="outline" class="full-width">
         <mat-label>Marca</mat-label>
-        <input matInput formControlName="marca" placeholder="Toyota">
-        <mat-icon matSuffix>wb_auto</mat-icon>
+        <input matInput #marcas formControlName="marca" placeholder="Toyota">
+        <mat-hint align="end">{{marcas.value.length}} / 15</mat-hint>
+        <mat-error *ngIf="marca.invalid && marca.errors.required">La marca es requerida</mat-error>
+         <mat-icon matSuffix>wb_auto</mat-icon> 
       </mat-form-field></td>
 
       <td><mat-form-field appearance="outline" class="full-width">
         <mat-label>Tipo de Vehiculo</mat-label>
-        <input matInput required formControlName="tipoVehiculo" placeholder="Carga">
+        <input matInput #tipos formControlName="tipoVehiuclo" placeholder="Carga">
+        <mat-hint align="end">{{tipos.value.length}} / 10</mat-hint>
+        <mat-error *ngIf="tipoVehiuclo.invalid && tipoVehiuclo.errors.required">Tipo de vehiculo requerido</mat-error>
         <mat-icon matSuffix>commute</mat-icon>
       </mat-form-field></td>
     </tr></table>
@@ -37,19 +47,21 @@
     <table class="full-width"><tr>
         <td><mat-form-field appearance="outline" class="full-width">
             <mat-label>Capacidad</mat-label>
-            <input matInput required formControlName="capacidad" maxlength="5" placeholder="200Kg">
+            <input matInput #capac formControlName="capacidad" maxlength="5" placeholder="200Kg">
+            <mat-hint align="end">{{capac.value.length}} / 6</mat-hint>
+            <mat-error *ngIf="capacidad.invalid && capacidad.errors.required">capacidad requerida</mat-error>
             <mat-icon matSuffix>fitness_center</mat-icon>
           </mat-form-field></td>
     </tr></table>
 
-    <button mat-raised-button color="primary" type="submit" >
+    <button mat-raised-button color="primary" type="submit" [disabled]="frmAddVeh.invalid">
         <mat-icon>done</mat-icon>
         <span>Aceptar</span>
     </button>
 
-    <button mat-raised-button color="accent" type="submit" >
+    <button mat-raised-button color="accent" type="button" routerLink="/vehicles">
         <mat-icon>close</mat-icon>
-        <span>Limpiar</span>
+        <span>Cancelar</span>
     </button>
 
   </form>
