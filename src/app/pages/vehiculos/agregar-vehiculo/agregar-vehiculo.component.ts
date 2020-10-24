@@ -2,7 +2,7 @@ import { Vehiculos } from './../../../_model/Vehiculos';
 import { VehiculosService } from './../../../_service/vehiculos.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-agregar-vehiculo',
@@ -11,23 +11,61 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AgregarVehiculoComponent implements OnInit {
 
+  private id: number;
+  private edit: boolean;
+
   form: FormGroup;
 
   constructor(private vehiculosService: VehiculosService,
-              private snackBar: MatSnackBar) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit(): void {
+
+    this.route.params.subscribe((params: Params) => {
+        // tslint:disable-next-line: no-string-literal
+        this.id = params['id'];
+        // tslint:disable-next-line: no-string-literal
+        this.edit = params['id'] != null;
+    });
+
+    this.iniciarFormulario();
+
+    if (this.edit === true){
+      this.cargarVehiculo();
+    }
+
+  }
+
+  iniciarFormulario(){
     this.form = new FormGroup({
+
       // tslint:disable-next-line: object-literal-key-quotes
       'placa': new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z]{3}-\[0-9]{3}')]),
       // tslint:disable-next-line: object-literal-key-quotes
-      'modelo': new FormControl('2008', [Validators.required, Validators.min(2000), Validators.max(2020)]),
+      'modelo': new FormControl('2000', [Validators.required, Validators.min(2000), Validators.max(2020)]),
       // tslint:disable-next-line: object-literal-key-quotes
       'marca': new FormControl('', [Validators.required]),
       // tslint:disable-next-line: object-literal-key-quotes
       'tipoVehiuclo': new FormControl('', [Validators.required]),
       // tslint:disable-next-line: object-literal-key-quotes
       'capacidad': new FormControl('', [Validators.required]),
+
+    });
+  }
+
+  cargarVehiculo(){
+    this.vehiculosService.listarPorId(this.id).subscribe(data => {
+      // tslint:disable-next-line: quotemark
+      this.form.get("placa").setValue(data.placa);
+      // tslint:disable-next-line: quotemark
+      this.form.get("modelo").setValue(data.modelo);
+      // tslint:disable-next-line: quotemark
+      this.form.get("marca").setValue(data.marca);
+      // tslint:disable-next-line: quotemark
+      this.form.get("tipoVehiuclo").setValue(data.tipoVehiuclo);
+      // tslint:disable-next-line: quotemark
+      this.form.get("capacidad").setValue(data.capacidad);
     });
   }
 
@@ -44,16 +82,20 @@ export class AgregarVehiculoComponent implements OnInit {
     vehiculo.tipoVehiuclo = this.form.value['tipoVehiuclo'];
     // tslint:disable-next-line: no-string-literal
     vehiculo.capacidad = this.form.value['capacidad'];
-    this.vehiculosService.guardar(vehiculo).subscribe(() => {
-      this.openSnackBar('Vehiculo Guardado');
-      this.form.reset();
-    });
-  }
 
-  openSnackBar(message: string){
-    this.snackBar.open(message, 'Informacion', {
-      duration: 3000,
-    });
+    if (this.edit === true){
+      vehiculo.idVehiculo = this.id;
+      this.vehiculosService.editar(vehiculo).subscribe(() => {
+        this.form.reset();
+        this.vehiculosService.mensajeCambio.next('Se ha editado el Vehiculo');
+        this.router.navigate(['/vehicles']);
+      });
+    } else {
+      this.vehiculosService.guardar(vehiculo).subscribe(() => {
+        this.form.reset();
+        this.vehiculosService.mensajeCambio.next('Vehiculo Guardado');
+      });
+    }
   }
 
   get placa() {

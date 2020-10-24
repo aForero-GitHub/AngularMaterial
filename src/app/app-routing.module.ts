@@ -10,7 +10,8 @@ const routes: Routes = [
   {path: 'provinces', component: DepartamentosComponent},
   {path: 'cities', component: CiudadesComponent},
   {path: 'vehicles', component: VehiculosComponent, children : [
-    {path: 'add', component: AgregarVehiculoComponent}
+    {path: 'add', component: AgregarVehiculoComponent},
+    {path: 'edit/:id', component: AgregarVehiculoComponent}
   ] }
 ];
 

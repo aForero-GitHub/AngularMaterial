@@ -1,53 +1,77 @@
-<!--Filtro-->
-<mat-form-field class="mat-form-filter">
+<div [hidden]="route.children.length !== 0">
+
+  <!--Filtro-->
+  <mat-form-field class="mat-form-filter">
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="UCK-118">
-</mat-form-field>
+  </mat-form-field>
 
-<!--Paginador-->
-<mat-paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]" [length]="cantidad"
-(page)="cambiarPagina($event)" > </mat-paginator>
+  <button mat-raised-button color="primary" style="float: right;" routerLink="/vehicles/add">
+    <mat-icon>add</mat-icon>
+    <span>Agregar Vehiculo</span>
+  </button>
 
-<!--Tabla Ciudades-->
-<table mat-table [dataSource]="dataSourceVehiculos" matSort class="mat-elevation-z8">
+  <!--Paginador-->
+  <mat-paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]" [length]="cantidad"
+    (page)="cambiarPagina($event)"> </mat-paginator>
+
+  <!--Tabla Ciudades-->
+  <table mat-table [dataSource]="dataSourceVehiculos" matSort class="mat-elevation-z8">
 
     <!--Columna Placa-->
     <ng-container matColumnDef="placa">
       <mat-header-cell *matHeaderCellDef mat-sort-header="placa"> Placa </mat-header-cell>
       <mat-cell *matCellDef="let vehiculos"> {{vehiculos.placa}} </mat-cell>
     </ng-container>
-  
+
     <!--Columna modelo -->
     <ng-container matColumnDef="modelo">
       <mat-header-cell *matHeaderCellDef mat-sort-header="modelo"> Modelo </mat-header-cell>
       <mat-cell *matCellDef="let vehiculos"> {{vehiculos.modelo}} </mat-cell>
     </ng-container>
 
-     <!--Columna marca -->
-     <ng-container matColumnDef="marca">
+    <!--Columna marca -->
+    <ng-container matColumnDef="marca">
       <mat-header-cell *matHeaderCellDef mat-sort-header="marca"> Marca </mat-header-cell>
       <mat-cell *matCellDef="let vehiculos"> {{vehiculos.marca}} </mat-cell>
     </ng-container>
 
-     <!--Columna Tipo de vehiculo -->
-     <ng-container matColumnDef="tipoVehiuclo">
+    <!--Columna Tipo de vehiculo -->
+    <ng-container matColumnDef="tipoVehiuclo">
       <mat-header-cell *matHeaderCellDef mat-sort-header="tipoVehiuclo"> Tipo de Vehiculo </mat-header-cell>
       <mat-cell *matCellDef="let vehiculos"> {{vehiculos.tipoVehiuclo}} </mat-cell>
     </ng-container>
 
-     <!--Columna nompre Capacidad -->
-     <ng-container matColumnDef="capacidad">
+    <!--Columna nompre Capacidad -->
+    <ng-container matColumnDef="capacidad">
       <mat-header-cell *matHeaderCellDef mat-sort-header="capacidad"> Capacidad </mat-header-cell>
       <mat-cell *matCellDef="let vehiculos"> {{vehiculos.capacidad}} </mat-cell>
+    </ng-container>
+
+    <!--Columna Editar / Eliminar -->
+    <ng-container matColumnDef="acciones">
+      <mat-header-cell *matHeaderCellDef mat-sort-header="acciones"> Editar || Eliminar </mat-header-cell>
+      <mat-cell *matCellDef="let vehiculos"> 
+
+        <button mat-button color="primary" [routerLink]="['/vehicles/edit/', vehiculos.idVehiculo]">
+          <mat-icon>create</mat-icon>
+        </button>
+
+        <button mat-button color="accent">
+          <mat-icon>clear</mat-icon>
+        </button>
+
+      </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-</table>
+  </table>
 
- <!--Formulario Agregar Vehiculos -->
- <mat-divider></mat-divider>
+</div>
 
- <router-outlet></router-outlet>
+<!--Formulario Agregar Vehiculos -->
+<mat-divider></mat-divider>
 
+<router-outlet></router-outlet>
