@@ -1,9 +1,12 @@
+import { Vehiculos } from './../../_model/Vehiculos';
+import { AsociaciondialogoComponent } from './asociaciondialogo/AsociaciondialogoComponent';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { VehiculosService } from './../../_service/vehiculos.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-vehiculos',
@@ -16,7 +19,7 @@ export class VehiculosComponent implements OnInit {
   // tslint:disable-next-line: no-inferrable-types
   pageIndex: number = 0;
   // tslint:disable-next-line: no-inferrable-types
-  pageSize: number = 5;
+  pageSize: number = 9;
 
   displayedColumns: any[] = ['placa', 'modelo', 'marca', 'tipoVehiuclo', 'capacidad', 'acciones'];
 
@@ -26,7 +29,8 @@ export class VehiculosComponent implements OnInit {
 
   constructor(private vehiculosService: VehiculosService,
               public route: ActivatedRoute,
-              private snackBar: MatSnackBar) { }
+              private snackBar: MatSnackBar,
+              public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.vehiculosService.mensajeCambio.subscribe(data => {
@@ -45,6 +49,25 @@ export class VehiculosComponent implements OnInit {
   openSnackBar(message: string){
     this.snackBar.open(message, 'Informacion', {
       duration: 3000,
+    });
+  }
+
+  abrirDialogo(vehiculo: Vehiculos){
+    const dialogoRef = this.dialog.open(AsociaciondialogoComponent, {
+      width: '400px',
+      // tslint:disable-next-line: object-literal-shorthand
+      data: { placa: vehiculo.placa, idVehiculo: vehiculo.idVehiculo }
+    });
+
+    dialogoRef.afterClosed().subscribe(result => {
+      if (result != null) {
+        if (result.event === 'Elimino') {
+          console.log('Elimino');
+          console.log(result.data);
+        } else if (result.event === 'Cancel') {
+          console.log('Cancel');
+        }
+      }
     });
   }
 

@@ -1,3 +1,4 @@
+import { AsociaciondialogoComponent } from './pages/vehiculos/asociaciondialogo/AsociaciondialogoComponent';
 import { MaterialModule } from './_material/material.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -11,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { VehiculosComponent } from './pages/vehiculos/vehiculos.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgregarVehiculoComponent } from './pages/vehiculos/agregar-vehiculo/agregar-vehiculo.component';
+import { ConductoresComponent } from './pages/conductores/conductores.component';
+import { PrincipalComponent } from './pages/principal/principal.component';
 
 
 @NgModule({
@@ -19,7 +22,10 @@ import { AgregarVehiculoComponent } from './pages/vehiculos/agregar-vehiculo/agr
     DepartamentosComponent,
     CiudadesComponent,
     VehiculosComponent,
-    AgregarVehiculoComponent
+    AgregarVehiculoComponent,
+    AsociaciondialogoComponent,
+    ConductoresComponent,
+    PrincipalComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +35,9 @@ import { AgregarVehiculoComponent } from './pages/vehiculos/agregar-vehiculo/agr
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule
+  ],
+  entryComponents: [
+    AsociaciondialogoComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
