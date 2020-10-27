@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Vehiculos } from './../../../_model/Vehiculos';
 import { VehiculosService } from './../../../_service/vehiculos.service';
 import { Component, OnInit } from '@angular/core';
@@ -18,7 +19,8 @@ export class AgregarVehiculoComponent implements OnInit {
 
   constructor(private vehiculosService: VehiculosService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
 
@@ -94,8 +96,16 @@ export class AgregarVehiculoComponent implements OnInit {
       this.vehiculosService.guardar(vehiculo).subscribe(() => {
         this.form.reset();
         this.vehiculosService.mensajeCambio.next('Vehiculo Guardado');
+      /*}, err => {
+        this.openSnackBar('Ups! No pudimos guardar el vehiculo' + err.error.error);*/
       });
     }
+  }
+
+  openSnackBar(message: string){
+    this.snackBar.open(message, 'Informacion', {
+      duration: 3000,
+    });
   }
 
   get placa() {

@@ -1,3 +1,5 @@
+import { ErrorComponent } from './pages/error/error.component';
+import { Not404Component } from './pages/not404/not404.component';
 import { PrincipalComponent } from './pages/principal/principal.component';
 import { ConductoresComponent } from './pages/conductores/conductores.component';
 import { AgregarVehiculoComponent } from './pages/vehiculos/agregar-vehiculo/agregar-vehiculo.component';
@@ -16,7 +18,9 @@ const routes: Routes = [
     {path: 'add', component: AgregarVehiculoComponent},
     {path: 'edit/:id', component: AgregarVehiculoComponent}
   ] },
-  {path: 'drivers', component: ConductoresComponent}
+  {path: 'drivers', component: ConductoresComponent},
+  {path: 'error/:status/:message', component: ErrorComponent},
+  {path: '**', component: Not404Component}
 ];
 
 @NgModule({
