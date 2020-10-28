@@ -16,22 +16,32 @@ export class ErrorInterceptService implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(retry(environment.REINTENTOS)).
-    pipe(tap(event => {
-      if (event instanceof HttpResponse) {
-        if (event.body && event.body.error === true && event.body.errorMessage) {
-          throw new Error(event.body.errorMessage);
+      pipe(tap(event => {
+        if (event instanceof HttpResponse) {
+          if (event.body && event.body.error === true && event.body.errorMessage) {
+            throw new Error(event.body.errorMessage);
+          }
         }
-      }
-    })).pipe(catchError((err) => {
-      this.router.navigate([`/error/${err.status}/${err.error.message}`]);
-      return EMPTY;
-    }));
+      })).pipe(catchError((err) => {
+        // tslint:disable-next-line: quotemark
+        if (err.status === 400 && err.error.error_description === "Bad credentials") {
+          // tslint:disable-next-line: quotemark
+          this.openSnacBar("Usuario o Contraseña Incorrecta");
+        // tslint:disable-next-line: quotemark
+        } else if (err.status === 401 && err.error.error_description === "----Nick o password incorecto") {
+          // tslint:disable-next-line: quotemark
+          this.openSnacBar("Usuario o Contraseña Incorrecta");
+        }
+        else {
+          this.router.navigate([`/error/${err.status}/${err.error.message}`]);
+        }
+        return EMPTY;
+      }));
   }
 
-  /*
-  openSnacBar(message: string){
+  openSnacBar(message: string) {
     this.snackBar.open(message, 'Informacion', {
       duration: 3000
     });
-  }*/
+  }
 }

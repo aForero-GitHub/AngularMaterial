@@ -1,3 +1,6 @@
+import { Not401Component } from './pages/not401/not401.component';
+import { GuardService } from './_shared/guard.service';
+import { LoginComponent } from './pages/login/login.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { Not404Component } from './pages/not404/not404.component';
 import { PrincipalComponent } from './pages/principal/principal.component';
@@ -11,15 +14,17 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-  {path: '', component: PrincipalComponent},
-  {path: 'provinces', component: DepartamentosComponent},
-  {path: 'cities', component: CiudadesComponent},
+  {path: 'provinces', component: DepartamentosComponent, canActivate: [GuardService]},
+  {path: 'cities', component: CiudadesComponent, canActivate: [GuardService]},
+  {path: 'drivers', component: ConductoresComponent, canActivate: [GuardService]},
   {path: 'vehicles', component: VehiculosComponent, children : [
     {path: 'add', component: AgregarVehiculoComponent},
     {path: 'edit/:id', component: AgregarVehiculoComponent}
-  ] },
-  {path: 'drivers', component: ConductoresComponent},
+  ], canActivate: [GuardService]},
+  {path: '', component: PrincipalComponent},
+  {path: 'login', component: LoginComponent},
   {path: 'error/:status/:message', component: ErrorComponent},
+  {path: 'not-401', component: Not401Component},
   {path: '**', component: Not404Component}
 ];
 

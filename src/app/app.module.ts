@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment';
 import { ErrorInterceptService } from './_shared/error-intercept.service';
 import { AsociaciondialogoComponent } from './pages/vehiculos/asociaciondialogo/AsociaciondialogoComponent';
 import { MaterialModule } from './_material/material.module';
@@ -18,8 +19,14 @@ import { PrincipalComponent } from './pages/principal/principal.component';
 import { Not404Component } from './pages/not404/not404.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { LoginComponent } from './pages/login/login.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { Not401Component } from './pages/not401/not401.component';
 
-
+export function tokenGetter() {
+  // tslint:disable-next-line: prefer-const
+  let tk = sessionStorage.getItem(environment.TOKEN_NAME);
+  return tk != null ? tk : '';
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +39,8 @@ import { LoginComponent } from './pages/login/login.component';
     PrincipalComponent,
     Not404Component,
     ErrorComponent,
-    LoginComponent
+    LoginComponent,
+    Not401Component
   ],
   imports: [
     BrowserModule,
@@ -41,7 +49,16 @@ import { LoginComponent } from './pages/login/login.component';
     NoopAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    JwtModule.forRoot({
+      config: {
+        // tslint:disable-next-line: object-literal-shorthand
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['157.230.49.177:8080'],
+        blacklistedRoutes: ['http://157.230.49.177:8080/movitapp-backend-seguridad/oauth/token']
+      }
+    })
+
   ],
   entryComponents: [
     AsociaciondialogoComponent
