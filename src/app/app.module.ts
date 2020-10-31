@@ -21,6 +21,7 @@ import { ErrorComponent } from './pages/error/error.component';
 import { LoginComponent } from './pages/login/login.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { Not401Component } from './pages/not401/not401.component';
+import { AgregarConductoresComponent } from './pages/conductores/agregar-conductores/agregar-conductores.component';
 
 export function tokenGetter() {
   // tslint:disable-next-line: prefer-const
@@ -40,7 +41,8 @@ export function tokenGetter() {
     Not404Component,
     ErrorComponent,
     LoginComponent,
-    Not401Component
+    Not401Component,
+    AgregarConductoresComponent
   ],
   imports: [
     BrowserModule,

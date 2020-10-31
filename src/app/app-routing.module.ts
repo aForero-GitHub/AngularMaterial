@@ -1,3 +1,4 @@
+import { AgregarConductoresComponent } from './pages/conductores/agregar-conductores/agregar-conductores.component';
 import { Not401Component } from './pages/not401/not401.component';
 import { GuardService } from './_shared/guard.service';
 import { LoginComponent } from './pages/login/login.component';
@@ -16,7 +17,9 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {path: 'provinces', component: DepartamentosComponent, canActivate: [GuardService]},
   {path: 'cities', component: CiudadesComponent, canActivate: [GuardService]},
-  {path: 'drivers', component: ConductoresComponent, canActivate: [GuardService]},
+  {path: 'drivers', component: ConductoresComponent, children : [
+    {path: 'add', component: AgregarConductoresComponent}
+  ], canActivate: [GuardService]},
   {path: 'vehicles', component: VehiculosComponent, children : [
     {path: 'add', component: AgregarVehiculoComponent},
     {path: 'edit/:id', component: AgregarVehiculoComponent}

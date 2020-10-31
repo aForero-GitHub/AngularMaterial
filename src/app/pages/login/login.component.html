@@ -1,22 +1,41 @@
-<div fxLayout="column" class="p-2">
-    <div class="p-2">
-        <mat-card>
-            <mat-card-header fxLayoutAling="center center">
-                <mat-card-subtitle><h2>Login</h2></mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <mat-form-field>
-                    <mat-label>Usuario</mat-label>
-                    <input matInput placeholder="user" maxlength="15" [(ngModel)]="usuario">
-                </mat-form-field>
-                <br>
-                <mat-form-field>
-                    <mat-label>Contraseña</mat-label>
-                    <input matInput type="password" placeholder="******" maxlength="15" [(ngModel)]="contrasenia">
-                </mat-form-field>
-                <br>
-                <button mat-raised-button color="primary" (click)="login()">Iniciar Seción</button>
-            </mat-card-content>
-        </mat-card>
-    </div>
-</div>
+<form class="forms" #frmAddVeh='ngForm' [formGroup]="form">
+    <mat-card>
+
+        <mat-card-header fxLayoutAling="center center">
+            <mat-card-subtitle>
+                <h2>Login</h2>
+            </mat-card-subtitle>
+        </mat-card-header>
+
+        <table class="full-width">
+            <tr>
+
+                <td>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>User</mat-label>
+                        <input matInput required formControlName="usuario" placeholder="My User">
+                        <mat-error *ngIf="usuario.errors.required">El usuario es requerido</mat-error>
+                        <mat-icon matSuffix>how_to_reg</mat-icon>
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
+
+
+        <table class="full-width">
+            <tr>
+
+                <td>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Password</mat-label>
+                        <input matInput type="password" required formControlName="contrasenia" placeholder="************">
+                        <mat-error *ngIf="contrasenia.errors.required">La contraseña es requerida</mat-error>
+                        <mat-icon matSuffix>https</mat-icon>
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
+
+        <button mat-raised-button color="primary" (click)="login()">Iniciar Seción</button>
+    </mat-card>
+</form>
