@@ -35,7 +35,7 @@ export class GuardService implements CanActivate {
         else if (url.includes('/cities') && rol === 'Administrador') {
           return true;
         }
-        else if (url.includes('/drivers') && rol === 'Despachador') {
+        else if (url.includes('/drivers') && rol === 'Administrador') {
           return true;
         }
         this.router.navigate(['not-401']);

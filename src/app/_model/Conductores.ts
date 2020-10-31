@@ -1,3 +1,6 @@
+import { Rol } from './Rol';
+import { TipoDocumento } from './TipoDocumento';
+import { Ciudades } from './Ciudades';
 export class Conductores {
     idUsuario: number;
     documento: string;
@@ -14,21 +17,7 @@ export class Conductores {
     celular: string;
     celularAux: string;
     correo: string;
-    tipoDocumento: {
-        idTipoDocumento: 1,
-        nombre: "Cédula"
-    };
-    rol: {
-        "idRol": 4,
-        "nombre": "Conductor",
-        "descripcion": "Conductor usuaario App"
-    };
-    ciudad: {
-        "idCiudad": 20,
-        "nombre": "Alejandria",
-        "departamento": {
-            "idDepartamento": 5,
-            "nombre": "ANTIOQUIA"
-        }
-    };  
+    tipoDocumento = new TipoDocumento();
+    rol = new Rol();
+    ciudad: Ciudades;
 }
