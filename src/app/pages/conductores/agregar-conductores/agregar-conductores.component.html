@@ -1,1 +1,158 @@
-<p>agregar-conductores works!</p>
+<form class="forms" #frmAddCo='ngForm' [formGroup]="form" (ngSubmit)="guardar()">
+    <mat-card>
+
+        <mat-card-header fxLayoutAling="center center">
+            <mat-card-subtitle>
+                <h2>Datos del Conductor</h2>
+            </mat-card-subtitle>
+        </mat-card-header>
+
+        <table class="full-width">
+            <tr>
+
+                <td>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput #nombres maxlength="10" formControlName="nombre" placeholder="Andres">
+                        <mat-hint align="end">{{nombres.value.length}} / 10</mat-hint>
+                        <mat-error *ngIf="nombre.invalid && nombre.errors.required">Nombre Requerido</mat-error>
+                        <mat-error *ngIf="nombre.invalid && nombre.errors.pattern">Solo puede ingresar letras</mat-error>
+                    </mat-form-field>
+                </td>
+
+                <td>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Apellido</mat-label>
+                        <input matInput #apellidos maxlength="10" formControlName="apellido" placeholder="Forero">
+                        <mat-hint align="end">{{apellidos.value.length}} / 10</mat-hint>
+                        <mat-error *ngIf="apellido.invalid && apellido.errors.required">Apellido Requerido</mat-error>
+                        <mat-error *ngIf="apellido.invalid && apellido.errors.pattern">Solo puede ingresar letras</mat-error>
+                    </mat-form-field>
+                </td>
+
+                <td>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Documento</mat-label>
+                        <input matInput #documentos maxlength="10" formControlName="documento" placeholder="1002395482">
+                        <mat-hint align="end">{{documentos.value.length}} / 10</mat-hint>
+                        <mat-error *ngIf="documento.invalid && documento.errors.required">El documento es Requerido</mat-error>
+                        <mat-error *ngIf="documento.invalid && documento.errors.pattern">Solo puede ingresar numeros</mat-error>
+                        <mat-icon matSuffix>money</mat-icon>
+                    </mat-form-field>
+                </td>
+
+            </tr>
+        </table>
+
+
+        <table class="full-width">
+            <tr>
+                <td>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Usuario</mat-label>
+                        <input matInput #usuarios maxlength="8" formControlName="nick" placeholder="V3nis0n">
+                        <mat-hint align="end">{{usuarios.value.length}} / 8</mat-hint>
+                        <mat-error *ngIf="nick.invalid && nick.errors.required">El usuario es Requerido</mat-error>
+                        <mat-icon matSuffix>perm_identity</mat-icon>
+                    </mat-form-field>
+                </td>
+
+                <td>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Contraseña</mat-label>
+                        <input matInput #claves maxlength="10" formControlName="clave" placeholder="***********">
+                        <mat-hint align="end">{{claves.value.length}} / 10</mat-hint>
+                        <mat-error *ngIf="clave.invalid && clave.errors.required">La clave es requerida </mat-error>
+                        <mat-icon matSuffix>https</mat-icon>
+                    </mat-form-field>
+                </td>
+
+
+            </tr>
+        </table>
+
+        <table class="full-width">
+            <tr>
+                <td>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Correo</mat-label>
+                        <input type="email" matInput formControlName="correo" placeholder="my@correo.com">
+                        <mat-error *ngIf="correo.invalid && correo.errors.required">El correo es requerido</mat-error>
+                        <mat-error *ngIf="correo.invalid && correo.errors.pattern">Correo no valido</mat-error>
+                        <mat-icon matSuffix>alternate_email</mat-icon>
+                    </mat-form-field>
+                </td>
+
+                <td>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Celular</mat-label>
+                        <input matInput #cell maxlength="10" formControlName="celular" placeholder="3014562435">
+                        <mat-hint align="end">{{cell.value.length}} / 10</mat-hint>
+                        <mat-error *ngIf="celular.invalid && celular.errors.required">El celular es Requerido</mat-error>
+                        <mat-error *ngIf="celular.invalid && celular.errors.pattern">Solo puede ingresar numeros</mat-error>
+                        <mat-icon matSuffix>phonelink_ring</mat-icon>
+                    </mat-form-field>
+                </td>
+
+                <td>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Celular Aux</mat-label>
+                        <input matInput #cell maxlength="10" formControlName="celularAux" placeholder="3184562435">
+                        <mat-hint align="end">{{cell.value.length}} / 10</mat-hint>
+                        <mat-error *ngIf="celularAux.invalid && celularAux.errors.pattern">Solo puede ingresar numeros</mat-error>
+                        <mat-icon matSuffix>stay_current_portrait</mat-icon>
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
+
+        <table class="full-width">
+            <tr>
+                <td>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Departamento</mat-label>
+                        <mat-select [(value)]="idDepartamento" (selectionChange)="idDepar($event.value)">
+                            <mat-option>None</mat-option>
+                            <mat-option [(value)]="departamento.idDepartamento" *ngFor="let departamento of dataSourceDepartamentos">
+                              {{departamento.nombre}}
+                            </mat-option>
+                          </mat-select>
+                    </mat-form-field>
+                </td>
+
+                <td>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Ciudad</mat-label>
+                        <mat-select [(value)]="idCiudad" (selectionChange)="idCiu($event.value)">
+                            <mat-option>None</mat-option>
+                            <mat-option [(value)]="ciudad.idCiudad" *ngFor="let ciudad of dataSourceCiudades">
+                              {{ciudad.nombre}}
+                            </mat-option>
+                          </mat-select>
+                    </mat-form-field>
+                </td>
+
+                <td>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Direccion</mat-label>
+                        <input matInput formControlName="direccion" placeholder="Cra 4ta #6-70">
+                        <mat-error *ngIf="direccion.invalid && direccion.errors.required">La direccion es requerida</mat-error>
+                        <mat-icon matSuffix>add_location_alt</mat-icon>
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="frmAddCo.invalid">
+            <mat-icon>done</mat-icon>
+            <span>Aceptar</span>
+        </button>
+
+        <button mat-raised-button color="accent" style="float: right;" type="button" routerLink="/drivers">
+            <mat-icon>close</mat-icon>
+            <span>Cancelar</span>
+        </button>
+
+    </mat-card>
+
+</form>

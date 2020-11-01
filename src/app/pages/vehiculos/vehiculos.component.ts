@@ -41,7 +41,7 @@ export class VehiculosComponent implements OnInit {
   }
 
   cambiarPagina(e: any) {
-    this.pageIndex = e.paeIndex;
+    this.pageIndex = e.pageIndex;
     this.pageSize = e.pageSize;
     this.listarVehiculos();
   }

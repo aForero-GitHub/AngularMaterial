@@ -24,6 +24,7 @@ export class ConductoresComponent implements OnInit {
   dataSourceConductores = new MatTableDataSource<any>();
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+
   constructor(private conductoresService: ConductorService,
               public route: ActivatedRoute,
               private snackBar: MatSnackBar,
@@ -38,7 +39,7 @@ export class ConductoresComponent implements OnInit {
   }
 
   cambiarPagina(e: any){
-    this.pageIndex = e.paeIndex;
+    this.pageIndex = e.pageIndex;
     this.pageSize = e.pageSize;
     this.listarConductores();
   }

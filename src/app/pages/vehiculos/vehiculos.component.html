@@ -12,8 +12,7 @@
   </button>
 
   <!--Paginador-->
-  <mat-paginator [pageSize]="pageSize" [pageSizeOptions]="[9, 15, 25, 100]" [length]="cantidad"
-    (page)="cambiarPagina($event)"> </mat-paginator>
+  <mat-paginator [pageSize]="pageSize" [pageSizeOptions]="[9, 15, 25, 100]" [length]="cantidad" (page)="cambiarPagina($event)"> </mat-paginator>
 
   <!--Tabla Ciudades-->
   <table mat-table [dataSource]="dataSourceVehiculos" matSort class="mat-elevation-z8">
@@ -42,7 +41,7 @@
       <mat-cell *matCellDef="let vehiculos"> {{vehiculos.tipoVehiuclo}} </mat-cell>
     </ng-container>
 
-    <!--Columna nompre Capacidad -->
+    <!--Columna Capacidad -->
     <ng-container matColumnDef="capacidad">
       <mat-header-cell *matHeaderCellDef mat-sort-header="capacidad"> Capacidad </mat-header-cell>
       <mat-cell *matCellDef="let vehiculos"> {{vehiculos.capacidad}} </mat-cell>

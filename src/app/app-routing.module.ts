@@ -18,7 +18,8 @@ const routes: Routes = [
   {path: 'provinces', component: DepartamentosComponent, canActivate: [GuardService]},
   {path: 'cities', component: CiudadesComponent, canActivate: [GuardService]},
   {path: 'drivers', component: ConductoresComponent, children : [
-    {path: 'add', component: AgregarConductoresComponent}
+    {path: 'add', component: AgregarConductoresComponent},
+    {path: 'edit/:id', component: AgregarConductoresComponent}
   ], canActivate: [GuardService]},
   {path: 'vehicles', component: VehiculosComponent, children : [
     {path: 'add', component: AgregarVehiculoComponent},

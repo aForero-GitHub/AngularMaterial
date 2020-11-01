@@ -1,0 +1,19 @@
+.forms {
+    min-width: 150px;
+    max-width: 725px;
+    margin: 9% auto;
+    width: 500%;
+  }
+  
+  .full-width {
+    width: 100%;
+  }  
+  
+  td {
+      padding-right: 8px;
+    }
+  
+  .button-row button,
+  .button-row a {
+    margin-right: 8px;
+  }

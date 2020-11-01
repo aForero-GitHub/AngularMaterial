@@ -14,7 +14,8 @@
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>User</mat-label>
                         <input matInput required formControlName="usuario" placeholder="My User">
-                        <mat-error *ngIf="usuario.errors.required">El usuario es requerido</mat-error>
+                        <mat-error *ngIf="usuario.invalid && usuario.errors.required">El usuario es requerido
+                        </mat-error>
                         <mat-icon matSuffix>how_to_reg</mat-icon>
                     </mat-form-field>
                 </td>
@@ -27,10 +28,13 @@
 
                 <td>
                     <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Password</mat-label>
-                        <input matInput type="password" required formControlName="contrasenia" placeholder="************">
-                        <mat-error *ngIf="contrasenia.errors.required">La contraseña es requerida</mat-error>
-                        <mat-icon matSuffix>https</mat-icon>
+                        <mat-label>Enter your password</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="contrasenia" placeholder="************">
+                        <mat-error *ngIf="contrasenia.invalid && contrasenia.errors.required">La contraseña es requerida</mat-error>
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                            [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
                     </mat-form-field>
                 </td>
             </tr>
