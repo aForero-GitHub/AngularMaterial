@@ -20,7 +20,7 @@ export class ConductorService {
   }
 
   listarPorId(idConductor: number){
-    return this.http.get<Conductores>(`${this.url}/listar/${idConductor}`);
+    return this.http.get<any>(`${this.url}/listar/${idConductor}`);
   }
 
   guardarConductor(conductor: Conductores){

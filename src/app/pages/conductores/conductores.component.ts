@@ -1,3 +1,5 @@
+//import { AsociaciondialogoComponent } from './asociaciondialogo/asociaciondialogo.component';
+import { Conductores } from './../../_model/Conductores';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
@@ -19,9 +21,9 @@ export class ConductoresComponent implements OnInit {
   // tslint:disable-next-line: no-inferrable-types
   pageSize: number = 9;
 
-  displayedColumns: any[] = ['nombre', 'apellido', 'documento', 'celular', 'correo', 'direccion'];
+  displayedColumns: any[] = ['nombre', 'apellido', 'documento', 'celular', 'correo', 'ciudad', 'direccion'];
 
-  dataSourceConductores = new MatTableDataSource<any>();
+  dataSourceConductores = new MatTableDataSource<Conductores>();
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
@@ -38,24 +40,38 @@ export class ConductoresComponent implements OnInit {
     this.listarConductores();
   }
 
-  cambiarPagina(e: any){
+  cambiarPagina(e: any) {
     this.pageIndex = e.pageIndex;
     this.pageSize = e.pageSize;
     this.listarConductores();
   }
 
-  openSnackBar(message: string){
+  openSnackBar(message: string) {
     this.snackBar.open(message, 'Informacion', {
       duration: 3000,
     });
   }
 
-  /*
-  abrirDialog(conductor: Conductores){
-    const dialogRef = this.dialog.open(AsociaciondialogoComponent)
-  }*/
+ /* abrirDialog(conductor: Conductores) {
+    const dialogRef = this.dialog.open(AsociaciondialogoComponent, {
+      width: '400px',
+      data: { nombre: conductor.nombre, idUsuario: conductor.idUsuario }
+    });
 
-  listarConductores(){
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null) {
+        if (result.event === 'Elimino') {
+          console.log('Elimino');
+          console.log(result.data);
+        } else if (result.event === 'Cancel') {
+          console.log('Cancel');
+        }
+      }
+    });
+  }
+*/
+
+  listarConductores() {
     this.conductoresService.listarConductores(this.pageIndex, this.pageSize).subscribe(data => {
       this.dataSourceConductores = new MatTableDataSource(data.content);
       this.dataSourceConductores.sort = this.sort;
@@ -63,7 +79,7 @@ export class ConductoresComponent implements OnInit {
     });
   }
 
-  applyFilter(event: Event){
+  applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSourceConductores.filter = filterValue.trim().toLowerCase();
   }

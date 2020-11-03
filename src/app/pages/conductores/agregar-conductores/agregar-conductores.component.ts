@@ -1,3 +1,5 @@
+import { Rol } from './../../../_model/Rol';
+import { TipoDocumento } from './../../../_model/TipoDocumento';
 import { Departamentos } from './../../../_model/Departamentos';
 import { DepartamentoService } from './../../../_service/departamentos.service';
 import { CiudadesService } from './../../../_service/ciudades.service';
@@ -102,11 +104,11 @@ export class AgregarConductoresComponent implements OnInit {
     // tslint:disable-next-line: prefer-const
     let conductor = new Conductores();
     // tslint:disable-next-line: no-string-literal
+    conductor.documento = this.form.value['documento'];
+    // tslint:disable-next-line: no-string-literal
     conductor.nombre = this.form.value['nombre'];
     // tslint:disable-next-line: no-string-literal
     conductor.apellido = this.form.value['apellido'];
-    // tslint:disable-next-line: no-string-literal
-    conductor.documento = this.form.value['documento'];
     // tslint:disable-next-line: no-string-literal
     conductor.nick = this.form.value['nick'];
     // tslint:disable-next-line: no-string-literal
@@ -119,6 +121,14 @@ export class AgregarConductoresComponent implements OnInit {
     conductor.celularAux = this.form.value['celularAux'];
     // tslint:disable-next-line: no-string-literal
     conductor.correo = this.form.value['correo'];
+    // tslint:disable-next-line: prefer-const
+    let tipoDocumento = new TipoDocumento();
+    conductor.tipoDocumento = tipoDocumento;
+    // tslint:disable-next-line: prefer-const
+    let rol = new Rol();
+    conductor.rol = rol;
+    // tslint:disable-next-line: no-string-literal
+    conductor.ciudad = this.form.value['ciudadSelct'];
 
     if (this.edit === true ){
       conductor.idUsuario = this.id;
@@ -187,6 +197,10 @@ export class AgregarConductoresComponent implements OnInit {
 
   get correo() {
     return this.form.get('correo');
+  }
+
+  get ciudad() {
+    return this.form.get('ciudadSelct');
   }
 
 }
