@@ -121,7 +121,7 @@
                         <mat-label>Departamento</mat-label>
                         <mat-select [(value)]="idDepartamento" (selectionChange)="idDepar($event.value)">
                             <mat-option>None</mat-option>
-                            <mat-option [(value)]="departamento.idDepartamento"
+                            <mat-option [value]="departamento.idDepartamento"
                                 *ngFor="let departamento of dataSourceDepartamentos">
                                 {{departamento.nombre}}
                             </mat-option>

@@ -130,7 +130,7 @@ export class AgregarConductoresComponent implements OnInit {
     // tslint:disable-next-line: no-string-literal
     conductor.ciudad = this.form.value['ciudadSelct'];
 
-    if (this.edit === true ){
+    /*if (this.edit === true ){
       conductor.idUsuario = this.id;
       this.conductorService.editarConductor(conductor).subscribe(() => {
         this.form.reset();
@@ -142,7 +142,12 @@ export class AgregarConductoresComponent implements OnInit {
         this.form.reset();
         this.conductorService.mensajeCambio.next('Se han agregado un conductor');
       });
-    }
+    }*/
+
+    this.conductorService.guardarConductor(conductor).subscribe(() => {
+        this.form.reset();
+        this.conductorService.mensajeCambio.next('Se ha agregado un conductor');
+    });
   }
 
   idDepar(event){
@@ -197,10 +202,6 @@ export class AgregarConductoresComponent implements OnInit {
 
   get correo() {
     return this.form.get('correo');
-  }
-
-  get ciudad() {
-    return this.form.get('ciudadSelct');
   }
 
 }
