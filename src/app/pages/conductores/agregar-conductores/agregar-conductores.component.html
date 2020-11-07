@@ -135,7 +135,7 @@
                         <mat-label>Ciudad</mat-label>
                         <mat-select formControlName="ciudadSelct">
                             <mat-option>None</mat-option>
-                            <mat-option [(value)]="ciudades" *ngFor="let ciudades of dataSourceCiudades">
+                            <mat-option [value]="ciudades" *ngFor="let ciudades of dataSourceCiudades">
                                 {{ciudades.nombre}} </mat-option>
                         </mat-select>
                     </mat-form-field>
