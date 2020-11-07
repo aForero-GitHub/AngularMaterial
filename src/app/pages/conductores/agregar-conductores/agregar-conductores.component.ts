@@ -43,10 +43,15 @@ export class AgregarConductoresComponent implements OnInit {
       // tslint:disable-next-line: no-string-literal
       this.edit = params['id'] != null;
     });
-    this.iniciarFormulario();
+
     this.departamentosService.listar().subscribe(data => {
       this.dataSourceDepartamentos = data;
     });
+
+    this.iniciarFormulario();
+    if ( this.edit === true ) {
+      this.cargarConductor();
+    }
   }
 
   iniciarFormulario(){
@@ -69,6 +74,8 @@ export class AgregarConductoresComponent implements OnInit {
       'celularAux': new FormControl('', [Validators.pattern('[0-9]{1,10}')]),
       // tslint:disable-next-line: object-literal-key-quotes
       'correo': new FormControl('', [Validators.required, Validators.pattern('^[^@]+@[^@]+\.[a-zA-Z]{2,}$')]),
+      // tslint:disable-next-line: object-literal-key-quotes
+      'ciudad': new FormControl(Ciudades, [Validators.required]),
     });
   }
 
@@ -92,6 +99,8 @@ export class AgregarConductoresComponent implements OnInit {
       this.form.get("celularAux").setValue(data.celularAux);
       // tslint:disable-next-line: quotemark
       this.form.get("correo").setValue(data.correo);
+      // tslint:disable-next-line: quotemark
+      this.form.get("ciudad").setValue(data.ciudad);
     });
   }
 
@@ -123,9 +132,9 @@ export class AgregarConductoresComponent implements OnInit {
     let rol = new Rol();
     conductor.rol = rol;
     // tslint:disable-next-line: no-string-literal
-    conductor.ciudad = this.form.value['ciudadSelct'];
+    conductor.ciudad = this.form.value['ciudad'];
 
-    /*if (this.edit === true ){
+    if (this.edit === true ){
       conductor.idUsuario = this.id;
       this.conductorService.editarConductor(conductor).subscribe(() => {
         this.form.reset();
@@ -137,12 +146,7 @@ export class AgregarConductoresComponent implements OnInit {
         this.form.reset();
         this.conductorService.mensajeCambio.next('Se han agregado un conductor');
       });
-    }*/
-
-    this.conductorService.guardarConductor(conductor).subscribe(() => {
-        this.form.reset();
-        this.conductorService.mensajeCambio.next('Se ha agregado un conductor');
-    });
+    }
   }
 
   idDepar(event){

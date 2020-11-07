@@ -1,5 +1,5 @@
 export class TipoDocumento {
-    idTipoDocumento: 1;
+    idTipoDocumento = 1;
     // tslint:disable-next-line: quotemark
-    nombre: "Cédula";
+    nombre = "Cédula";
 }

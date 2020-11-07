@@ -64,7 +64,7 @@
                 <td>
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Contraseña</mat-label>
-                        <input matInput #claves maxlength="10" formControlName="clave" placeholder="***********">
+                        <input matInput #claves maxlength="80" formControlName="clave" placeholder="***********">
                         <mat-hint align="end">{{claves.value.length}} / 10</mat-hint>
                         <mat-error *ngIf="clave.invalid && clave.errors.required">La clave es requerida </mat-error>
                         <mat-icon matSuffix>https</mat-icon>
@@ -103,8 +103,8 @@
                 <td>
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Celular Aux</mat-label>
-                        <input matInput #cell maxlength="10" formControlName="celularAux" placeholder="3184562435">
-                        <mat-hint align="end">{{cell.value.length}} / 10</mat-hint>
+                        <input matInput #cell2 maxlength="10" formControlName="celularAux" placeholder="3184562435">
+                        <mat-hint align="end">{{cell2.value.length}} / 10</mat-hint>
                         <mat-error *ngIf="celularAux.invalid && celularAux.errors.pattern">Solo puede ingresar numeros
                         </mat-error>
                         <mat-icon matSuffix>stay_current_portrait</mat-icon>
@@ -120,8 +120,8 @@
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Departamento</mat-label>
                         <mat-select [(value)]="idDepartamento" (selectionChange)="idDepar($event.value)">
-                            <mat-option>None</mat-option>
-                            <mat-option [value]="departamento.idDepartamento"
+                            <!--<mat-option>None</mat-option>-->
+                            <mat-option [(value)]="departamento.idDepartamento"
                                 *ngFor="let departamento of dataSourceDepartamentos">
                                 {{departamento.nombre}}
                             </mat-option>
@@ -133,8 +133,8 @@
                 <td>
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Ciudad</mat-label>
-                        <mat-select formControlName="ciudadSelct">
-                            <mat-option>None</mat-option>
+                        <mat-select formControlName="ciudad">
+                            <!--<mat-option>None</mat-option>-->
                             <mat-option [value]="ciudades" *ngFor="let ciudades of dataSourceCiudades">
                                 {{ciudades.nombre}} </mat-option>
                         </mat-select>

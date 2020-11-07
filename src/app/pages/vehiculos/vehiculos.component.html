@@ -50,7 +50,7 @@
 
     <!--Columna Editar / Eliminar -->
     <ng-container matColumnDef="acciones">
-      <mat-header-cell *matHeaderCellDef mat-sort-header="acciones"> Opciones </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header="acciones"> Editar || Asociar Conductor </mat-header-cell>
       <mat-cell *matCellDef="let vehiculos">
 
         <button mat-button color="primary" [routerLink]="['/vehicles/edit/', vehiculos.idVehiculo]">

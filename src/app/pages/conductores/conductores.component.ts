@@ -51,30 +51,17 @@ export class ConductoresComponent implements OnInit {
     });
   }
 
- /* abrirDialog(conductor: Conductores) {
-    const dialogRef = this.dialog.open(AsociaciondialogoComponent, {
-      width: '400px',
-      data: { nombre: conductor.nombre, idUsuario: conductor.idUsuario }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result != null) {
-        if (result.event === 'Elimino') {
-          console.log('Elimino');
-          console.log(result.data);
-        } else if (result.event === 'Cancel') {
-          console.log('Cancel');
-        }
-      }
-    });
-  }
-*/
-
   listarConductores() {
     this.conductoresService.listarConductores(this.pageIndex, this.pageSize).subscribe(data => {
       this.dataSourceConductores = new MatTableDataSource(data.content);
       this.dataSourceConductores.sort = this.sort;
       this.cantidad = data.totalElements;
+    });
+  }
+
+  eliminarConductor(idUser){
+    this.conductoresService.eliminarConductor(idUser).subscribe((data) => {
+      this.conductoresService.mensajeCambio.next('Se he eliminado un Conductor');
     });
   }
 

@@ -32,7 +32,7 @@ export class ConductorService {
   }
 
   eliminarConductor(idConductor: number){
-    return this.http.delete<Conductores>(`${this.url}/eliminar/${idConductor}`);
+    return this.http.delete(`${this.url}/eliminar/${idConductor}`);
   }
 
  conductoresNoAsociados(idVehiculo: number){

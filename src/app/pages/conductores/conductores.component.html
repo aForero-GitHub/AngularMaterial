@@ -62,13 +62,13 @@
 
     <!--Columna Editar / Eliminar -->
     <ng-container matColumnDef="acciones">
-      <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Editar || Eliminar</mat-header-cell>
       <mat-cell *matCellDef="let conductores">
           <button mat-button color="primary" [routerLink]="['/drivers/edit/', conductores.idUsuario]">
                <mat-icon>edit</mat-icon>
           </button>
 
-          <button mat-button color="disable">
+          <button mat-button color="disable" (click)="eliminarConductor(conductores.idUsuario)">
             <mat-icon>clear</mat-icon>
        </button>
 

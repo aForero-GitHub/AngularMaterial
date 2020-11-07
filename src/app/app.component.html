@@ -2,7 +2,7 @@
 
   <mat-toolbar>
 
-    <button mat-icon-button (click)="sidenav.toggle()">
+    <button mat-icon-button  class="isLogged" *ngIf="!isLogged" (click)="sidenav.toggle()">
       <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
       <mat-icon *ngIf="sidenav.opened">close</mat-icon>
     </button>
@@ -11,7 +11,7 @@
 
     <span class="spacer"></span>
 
-    <button mat-icon-button [matMenuTriggerFor]="menu">
+    <button mat-icon-button class="isLogged" *ngIf="!isLogged" [matMenuTriggerFor]="menu">
       <mat-icon>blur_on</mat-icon>
     </button>
 
@@ -22,7 +22,7 @@
         <span>My Count</span>
       </button>
 
-      <button mat-menu-item (click)="sidenav.opened = false">
+      <button mat-menu-item (click)="cerrarSesion()">
         <mat-icon>exit_to_app</mat-icon>
         <span>Clouse</span>
       </button>

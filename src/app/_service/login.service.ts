@@ -35,7 +35,7 @@ export class LoginService {
 
     this.http.get(`${environment.HOST}/cerrarSesion/anular/${token}`).subscribe(() => {
       sessionStorage.clear();
-      this.router.navigate(['login']);
+      this.router.navigate(['']);
     });
   }
 }

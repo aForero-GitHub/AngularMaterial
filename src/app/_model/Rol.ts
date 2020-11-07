@@ -1,7 +1,7 @@
 export class Rol {
-    idRol: 4;
+    idRol = 4;
     // tslint:disable-next-line: quotemark
-    nombre: "Conductor";
+    nombre = "Conductor";
     // tslint:disable-next-line: quotemark
-    descripcion: "Conductor usuario App";
+    descripcion = "Conductor usuario App";
 }
