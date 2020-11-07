@@ -1,4 +1,3 @@
-//import { AsociaciondialogoComponent } from './asociaciondialogo/asociaciondialogo.component';
 import { Conductores } from './../../_model/Conductores';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -21,7 +20,7 @@ export class ConductoresComponent implements OnInit {
   // tslint:disable-next-line: no-inferrable-types
   pageSize: number = 9;
 
-  displayedColumns: any[] = ['nombre', 'apellido', 'documento', 'celular', 'correo', 'ciudad', 'direccion'];
+  displayedColumns: any[] = ['nombre', 'apellido', 'documento', 'celular', 'correo', 'ciudad', 'direccion', 'acciones'];
 
   dataSourceConductores = new MatTableDataSource<Conductores>();
 

@@ -1,3 +1,4 @@
+import { AsociarCV } from './../_model/AsociarCV';
 import { Vehiculos } from './../_model/Vehiculos';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment';
@@ -30,4 +31,21 @@ export class VehiculosService {
   editar(vehiculo: Vehiculos){
     return this.http.put(`${this.url}/editar`, vehiculo);
   }
+
+  /*AsociarConductor(asociacion: AsociarCV) {​​
+    return this.http.post(`${​​this.url}​​/asociarcondcutor/${​​asociacion.idUsuario}​​/${​​asociacion.idVehiculo}​​`, asociacion);
+  }​​
+
+  desasociarConductor(desasociar: AsociarCV) {​​
+    return this.http.post(`${​​this.url}​​/desasociarconductor/${​​desasociar.idUsuario}​​/${​​desasociar.idVehiculo}​​`, desasociar);
+  }​​*/
+
+  asociarConductor(asociacion: AsociarCV){
+    return this.http.post(`${this.url}/asociarcondcutor/${asociacion.idUsuario}/${asociacion.idVehiculo}`, asociacion);
+  }
+
+  desasociarConductor(desasociar: AsociarCV){
+    return this.http.post(`${this.url}/desasociarconductor/${desasociar.idUsuario}/${desasociar.idVehiculo}`, desasociar);
+  }
+
 }
