@@ -18,11 +18,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AgregarConductoresComponent implements OnInit {
 
-  dataSourceCiudades: Ciudades[];
+  dataSourceCiudades: any;
   dataSourceDepartamentos: Departamentos[];
   selectedValue: any;
-  private id: number;
-  private edit: boolean;
+  public id: number;
+  public edit: boolean;
   idDepartamento: number;
   idCiudad: number;
   ciudades: Ciudades;
@@ -44,6 +44,9 @@ export class AgregarConductoresComponent implements OnInit {
       this.edit = params['id'] != null;
     });
     this.iniciarFormulario();
+    this.departamentosService.listar().subscribe(data => {
+      this.dataSourceDepartamentos = data;
+    });
   }
 
   iniciarFormulario(){
@@ -66,14 +69,6 @@ export class AgregarConductoresComponent implements OnInit {
       'celularAux': new FormControl('', [Validators.pattern('[0-9]{1,10}')]),
       // tslint:disable-next-line: object-literal-key-quotes
       'correo': new FormControl('', [Validators.required, Validators.pattern('^[^@]+@[^@]+\.[a-zA-Z]{2,}$')]),
-    });
-
-    this.departamentosService.listar().subscribe(data => {
-      this.dataSourceDepartamentos = data;
-    });
-
-    this.ciudadesService.listarCiudades(this.idDepartamento).subscribe(data => {
-      this.dataSourceCiudades = data;
     });
   }
 
