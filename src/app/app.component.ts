@@ -15,6 +15,7 @@ export class AppComponent {
 
   estaON: boolean;
 
+  // tslint:disable-next-line: use-lifecycle-interface
   ngOnInit(): void {
     const user = this.loginService.estaLogueado();
     if ( user) {
