@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { LoginService } from './../../_service/login.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,14 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrincipalComponent implements OnInit {
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService,
+              private router: Router) { }
 
-  isLogged: boolean;
+  estaON: boolean;
 
   ngOnInit(): void {
     const user = this.loginService.estaLogueado();
     if ( user) {
-      this.isLogged = true;
+      this.estaON = true;
     }
   }
 

@@ -37,7 +37,6 @@
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </table>
-<mat-paginator [pageSize]="pageSize" [pageSizeOptions]="[2, 4]" [length]="cantidad"
-    (page)="cambiarPagina($event)"> </mat-paginator>
+<mat-paginator [pageSize]="2" [pageSizeOptions]="[2, 4]"></mat-paginator>
 <br>
 <button mat-stroked-button (click)="cerrarDialogo()">Cerrar</button>

@@ -13,14 +13,13 @@ export class AppComponent {
   constructor(private loginService: LoginService,
               private router: Router){}
 
-  isLogged: boolean;
+  estaON: boolean;
 
   ngOnInit(): void {
     const user = this.loginService.estaLogueado();
-    if (user) {
-      this.isLogged = true;
+    if ( user) {
+      this.estaON = true;
     }
-    this.cerrarSesion();
   }
 
   cerrarSesion(){

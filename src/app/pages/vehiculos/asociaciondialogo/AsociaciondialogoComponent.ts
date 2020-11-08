@@ -1,3 +1,4 @@
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { AsociarCV } from './../../../_model/AsociarCV';
 import { VehiculosService } from './../../../_service/vehiculos.service';
@@ -17,11 +18,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class AsociaciondialogoComponent implements OnInit {
 
-  cantidad: number;
-  // tslint:disable-next-line: no-inferrable-types
-  pageIndex: number = 0;
-  // tslint:disable-next-line: no-inferrable-types
-  pageSize: number = 2;
+ 
 
   idVehiculo: number;
   idUsuario: number;
@@ -35,6 +32,7 @@ export class AsociaciondialogoComponent implements OnInit {
   displayedColumns: any[] = ['nombre', 'apellido', 'acciones'];
   dataSourceConductores = new MatTableDataSource<Conductores>();
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(public dialogRef: MatDialogRef<AsociaciondialogoComponent>,
               @Inject(MAT_DIALOG_DATA) public data: Vehiculos,
@@ -52,6 +50,7 @@ export class AsociaciondialogoComponent implements OnInit {
     this.conductorService.conductoresAsociados(this.idVehiculo).subscribe(res => {
       this.dataSourceConductores = new MatTableDataSource(res);
       this.dataSourceConductores.sort = this.sort;
+      this.dataSourceConductores.paginator = this.paginator;
     });
   }
 
@@ -86,12 +85,6 @@ export class AsociaciondialogoComponent implements OnInit {
       this.cargarDatosTabla();
       this.listaNoAsociados();
     });
-  }
-
-  cambiarPagina(e: any) {
-    this.pageIndex = e.pageIndex;
-    this.pageSize = e.pageSize;
-    this.cargarDatosTabla();
   }
 
   cerrarDialogo() {

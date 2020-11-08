@@ -2,7 +2,7 @@
 
   <mat-toolbar>
 
-    <button mat-icon-button  class="isLogged" *ngIf="!isLogged" (click)="sidenav.toggle()">
+    <button mat-icon-button class="estaON" *ngIf="estaON" (click)="sidenav.toggle()">
       <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
       <mat-icon *ngIf="sidenav.opened">close</mat-icon>
     </button>
@@ -11,7 +11,7 @@
 
     <span class="spacer"></span>
 
-    <button mat-icon-button class="isLogged" *ngIf="!isLogged" [matMenuTriggerFor]="menu">
+    <button class="estaON" *ngIf="estaON" mat-icon-button  [matMenuTriggerFor]="menu">
       <mat-icon>blur_on</mat-icon>
     </button>
 
