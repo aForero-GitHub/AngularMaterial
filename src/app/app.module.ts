@@ -22,6 +22,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { Not401Component } from './pages/not401/not401.component';
 import { AgregarConductoresComponent } from './pages/conductores/agregar-conductores/agregar-conductores.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 export function tokenGetter() {
   // tslint:disable-next-line: prefer-const
@@ -70,6 +71,10 @@ export function tokenGetter() {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptService,
       multi: true
+    },
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
     }
   ],
   bootstrap: [AppComponent]
