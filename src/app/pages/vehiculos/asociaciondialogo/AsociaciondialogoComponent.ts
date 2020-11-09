@@ -10,15 +10,12 @@ import { Vehiculos } from './../../../_model/Vehiculos';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-
 @Component({
   selector: 'app-asociaciondialogo',
   templateUrl: './asociaciondialogo.component.html',
   styleUrls: ['./asociaciondialogo.component.css']
 })
 export class AsociaciondialogoComponent implements OnInit {
-
- 
 
   idVehiculo: number;
   idUsuario: number;

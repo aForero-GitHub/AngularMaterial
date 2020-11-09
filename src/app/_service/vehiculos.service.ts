@@ -32,14 +32,6 @@ export class VehiculosService {
     return this.http.put(`${this.url}/editar`, vehiculo);
   }
 
-  /*AsociarConductor(asociacion: AsociarCV) {​​
-    return this.http.post(`${​​this.url}​​/asociarcondcutor/${​​asociacion.idUsuario}​​/${​​asociacion.idVehiculo}​​`, asociacion);
-  }​​
-
-  desasociarConductor(desasociar: AsociarCV) {​​
-    return this.http.post(`${​​this.url}​​/desasociarconductor/${​​desasociar.idUsuario}​​/${​​desasociar.idVehiculo}​​`, desasociar);
-  }​​*/
-
   asociarConductor(asociacion: AsociarCV){
     return this.http.post(`${this.url}/asociarcondcutor/${asociacion.idUsuario}/${asociacion.idVehiculo}`, asociacion);
   }

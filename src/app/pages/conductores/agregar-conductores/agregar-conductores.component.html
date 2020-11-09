@@ -94,7 +94,7 @@
                         <mat-hint align="end">{{cell.value.length}} / 10</mat-hint>
                         <mat-error *ngIf="celular.invalid && celular.errors.required">El celular es Requerido
                         </mat-error>
-                        <mat-error *ngIf="celular.invalid && celular.errors.pattern">Solo puede ingresar numeros
+                        <mat-error *ngIf="celular.invalid && celular.errors.pattern">Formato de telefono incorrecto
                         </mat-error>
                         <mat-icon matSuffix>phonelink_ring</mat-icon>
                     </mat-form-field>

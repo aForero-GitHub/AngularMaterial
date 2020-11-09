@@ -144,7 +144,7 @@ export class AgregarConductoresComponent implements OnInit {
     } else {
       this.conductorService.guardarConductor(conductor).subscribe(() => {
         this.form.reset();
-        this.conductorService.mensajeCambio.next('Se han agregado un conductor');
+        this.conductorService.mensajeCambio.next('Se ha agregado un conductor');
       });
     }
   }
